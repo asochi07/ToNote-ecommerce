@@ -12,7 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('admin/vendor/owl-carousel/css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/owl-carousel/css/owl.theme.default.min.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('admin/vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -47,29 +47,12 @@
     <script src="{{ asset('admin/js/quixnav-init.js') }}" defer></script>
     <script src="{{ asset('admin/js/custom.min.js') }}" defer></script>
 
-
-    <!-- Vectormap -->
-    {{-- <script src="{{ asset('admin/vendor/raphael/raphael.min.js') }}" defer></script> --}}
+    <!-- morris -->
     <script src="{{ asset('admin/vendor/morris/morris.min.js') }}" defer></script>
-
-
-    {{-- <script src="./vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="./vendor/chart.js/Chart.bundle.min.js"></script> --}}
-
-    <!-- <script src="./vendor/gaugeJS/dist/gauge.min.js"></script> -->
-
-    <!--  flot-chart js -->
-    {{-- <script src="./vendor/flot/jquery.flot.js"></script>
-    <script src="./vendor/flot/jquery.flot.resize.js"></script> --}}
-
     <!-- Owl Carousel -->
     <script src="{{ asset('admin/vendor/owl-carousel/js/owl.carousel.min.js') }}" defer></script>
 
-    <!-- Counter Up -->
-    {{-- <script src="./vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="./vendor/jquery.counterup/jquery.counterup.min.js"></script> --}}
-
+    <!-- Script -->
     <script src="{{ asset('admin/js/dashboard/dashboard-1.js') }}" defer></script>
 
     @yield('script')

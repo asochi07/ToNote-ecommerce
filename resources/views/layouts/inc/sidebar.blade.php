@@ -8,7 +8,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.html">Dashboard 1</a></li>
+                            <li><a href="{{ url('dashboard') }}">Dashboard 1</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Apps</li>
@@ -28,10 +28,10 @@
                     </li>
                     <li class="nav-label">Forms</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-form"></i><span class="nav-text">Forms</span></a>
+                                class="icon icon-form"></i><span class="nav-text">Categories</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./form-element.html">Form Elements</a></li>
-                            <li><a href="./form-wizard.html">Wizard</a></li>
+                            <li><a href="{{ url('categories')}}">Categories</a></li>
+                            <li><a href="{{ url('create-category') }}">Add Category</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Table</li>
