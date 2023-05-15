@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ToNote-ecommerce') }}</title>
+    <title>{{ config('app.name', '3C Shopper') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('admin/vendor/owl-carousel/css/owl.carousel.min.css') }}" rel="stylesheet">
@@ -33,6 +33,7 @@
     <div id="main-wrapper">
         @include('layouts.inc.navbar')
         @include('layouts.inc.sidebar')
+        @include('layouts.inc.message')
         <div class="content-body">
             @yield('content-body')
         </div>

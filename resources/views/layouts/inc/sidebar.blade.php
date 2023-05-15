@@ -34,12 +34,12 @@
                             <li><a href="{{ url('create-category') }}">Add Category</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">Table</li>
+                    <li class="nav-label">Products</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
+                                class="icon icon-layout-25"></i><span class="nav-text">Products</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                            <li><a href="table-datatable-basic.html">Datatable</a></li>
+                            <li><a href="{{ url('products')}}">Products</a></li>
+                            <li><a href="{{ url('create')}}">Add Product</a></li>
                         </ul>
                     </li>
                 </ul>

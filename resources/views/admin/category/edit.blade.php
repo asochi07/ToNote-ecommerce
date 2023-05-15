@@ -13,15 +13,15 @@
                         <hr>
                     </div>
                     <div class="card-body">
-                        <form  method="POST" action="{{ url('insert-category') }}" class="appointment bg-white" enctype="multipart/form-data">
-                            @method('POST')
+                        <form  method="POST" action="{{ url('update-category/'.$category->id) }}" class="appointment bg-white" enctype="multipart/form-data">
+                            @method('PUT')
                             <div id="feedback"></div>
                             <div class="row">
                                 <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="category name" id="name" name="name" value="{{old('name')}}"  required/>
+                                        <input type="text" class="form-control" placeholder="category name" id="name" name="name" value="{{ $category->name }}"  required/>
                                         @if ($errors->has('name'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('name') }}
@@ -33,7 +33,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Slug</label>
-                                        <input type="text" class="form-control" placeholder="Re-enter your title..." id="slug" name="slug" value="{{old('slug')}}"  required/>
+                                        <input type="text" class="form-control" placeholder="Re-enter your title..." id="slug" name="slug" value="{{ $category->slug }}"  required/>
                                         @if ($errors->has('slug'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('slug') }}
@@ -45,7 +45,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="5" placeholder="description here..." id="description" id="description" name="description" value="{{old('description')}}" ></textarea>
+                                        <textarea class="form-control" rows="5" placeholder="description here..." id="description" id="description" name="description" > {{ $category->description }}</textarea>
                                         @if ($errors->has('description'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('description') }}
@@ -57,7 +57,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-check mb-2">
-                                            <input type="checkbox" class="form-check-input" id="status" name="status">
+                                            <input type="checkbox" class="form-check-input" id="status" {{ $category->status == 1 ? 'checked' : ''}} name="status">
                                             <label class="form-check-label" for="status">Status</label>
                                         </div>
                                     </div>
@@ -66,20 +66,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-check mb-2">
-                                            <input type="checkbox" class="form-check-input" id="popular" name="popular">
+                                            <input type="checkbox" class="form-check-input" id="popular" name="popular" {{ $category->popular == 1 ? 'checked' : ''}}>
                                             <label class="form-check-label" for="popular">Popular</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-primary" type="button">Button</button>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input" id="image">
-                                            <label class="custom-file-label">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +75,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Product Title</label>
-                                        <input type="text" class="form-control" id="meta_title" name="meta_title" name="meta_title" value="{{old('meta_title')}}"  required/>
+                                        <input type="text" class="form-control" id="meta_title" name="meta_title" name="meta_title" value="{{ $category->meta_title }}"  required/>
                                         @if ($errors->has('meta_title'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('meta_title') }}
@@ -99,7 +87,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Product Description</label>
-                                        <textarea rows="3" class="form-control" placeholder="" id="meta_descrip" name="meta_descrip"  required>{{old('meta_descrip')}}</textarea>
+                                        <textarea type="checkbox" class="form-control" placeholder="" id="meta_descrip" name="meta_descrip" value="{{old('meta_descrip')}}"  required>{{ $category->meta_descrip }}</textarea>
                                         @if ($errors->has('meta_descrip'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('meta_descrip') }}
@@ -111,12 +99,28 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Search Keywords</label>
-                                        <textarea rows="3" class="form-control" placeholder="" id="meta_keywords" name="meta_keywords" required>{{old('meta_keywords')}}</textarea>
+                                        <textarea type="text" class="form-control" placeholder="" id="meta_keywords" name="meta_keywords" value="{{old('meta_keywords')}}"  required>{{ $category->meta_keywords }}</textarea>
                                         @if ($errors->has('meta_keywords'))
                                             <div class="error" style="color:red;">
                                                 {{ $errors->first('meta_keywords') }}
                                             </div>
                                         @endif
+                                    </div>
+                                </div>
+
+                                @if ($category->image)
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <img class="w-100 mb-3" src="{{ asset('assets/uploads/category/'.$category->image)}}" alt="{{$category->name }}">
+                                    </div>
+                                </div>
+                                @endif
+                                <div class="col-md-9">
+                                    <div class="input-group mb-3">
+                                        <div class="custom-file">
+                                            <input type="file" name="image" class="custom-file-input" id="image">
+                                            <label class="custom-file-label">Choose file</label>
+                                        </div>
                                     </div>
                                 </div>
 
