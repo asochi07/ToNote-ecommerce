@@ -26,6 +26,14 @@
     <!-- Customized Bootstrap Stylesheet -->
     @stack('style')
     <link href="{{ asset('frontend/css/style.css')}}" rel="stylesheet">
+    <style>
+        a{
+            text-decoration: none !important;
+        }
+        a p:hover{
+            color: #D19C97;
+        }
+    </style>
 </head>
 
 <body>

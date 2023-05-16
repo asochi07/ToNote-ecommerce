@@ -23,6 +23,7 @@ class CategoryController extends Controller
 
     public function insert(Request $request)
     {
+        $slug = Str::slug($request->slug, '-');
         $category = new Category;
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -32,7 +33,7 @@ class CategoryController extends Controller
             $category->image = $filename;
         }
         $category->name = $request->input('name');
-        $category->slug = $request->input('slug');
+        $category->slug = $slug;
         $category->description = $request->input('description');
         $category->status = $request->input('status') == True ? '1' : '0';
         $category->popular = $request->input('popular') == True ? '1' : '0';
@@ -51,6 +52,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $slug = Str::slug($request->slug, '-');
         $category = Category::find($id);
         if($request->hasFile('image')){
             $path = 'assets/uploads/category/'.$category->image;
@@ -64,7 +66,7 @@ class CategoryController extends Controller
             $category->image = $filename;
         }
         $category->name = $request->input('name');
-        $category->slug = $request->input('slug');
+        $category->slug = $slug;
         $category->description = $request->input('description');
         $category->status = $request->input('status') == True ? '1' : '0';
         $category->popular = $request->input('popular') == True ? '1' : '0';

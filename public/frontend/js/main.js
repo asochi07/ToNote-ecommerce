@@ -59,6 +59,32 @@
         }
     });
 
+    // Product carousel
+    $('.product-carousel').owlCarousel({
+        loop: true,
+        margin: 29,
+        nav: false,
+        autoplay: true,
+        smartSpeed: 1000,
+        responsive: {
+            0:{
+                items:2
+            },
+            576:{
+                items:2
+            },
+            768:{
+                items:3
+            },
+            992:{
+                items:4
+            },
+            1200:{
+                items:5
+            }
+        }
+    });
+
 
     // Related carousel
     $('.related-carousel').owlCarousel({

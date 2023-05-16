@@ -25,6 +25,7 @@ class ProductController extends Controller
 
     public function insert(Request $request)
     {
+        $slug = Str::slug($request->slug, '-');
         $product = new Product;
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -35,7 +36,7 @@ class ProductController extends Controller
         }
         $product->cate_id = $request->input('cate_id');
         $product->name = $request->input('name');
-        $product->slug = $request->input('slug');
+        $product->slug = $slug;
         $product->small_description = $request->input('small_description');
         $product->description = $request->input('description');
         $product->original_price = $request->input('original_price');
@@ -60,6 +61,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $slug = Str::slug($request->slug, '-');
         $product = Product::find($id);
         if($request->hasFile('image')){
             $path = 'assets/uploads/product/'.$product->image;
@@ -74,7 +76,7 @@ class ProductController extends Controller
         }
         $product->cate_id = $request->input('cate_id');
         $product->name = $request->input('name');
-        $product->slug = $request->input('slug');
+        $product->slug = $slug;
         $product->small_description = $request->input('small_description');
         $product->description = $request->input('description');
         $product->original_price = $request->input('original_price');

@@ -3,12 +3,11 @@
     Welcome to 3C Shopper
 @endsection
 @push('style')
-<link href="{{ asset('frontend/css/owl.carousel.min.css')}}" rel="stylesheet">
-<link href="{{ asset('frontend/css/owl.theme.default.min.css')}}" rel="stylesheet">
+<link href="{{ asset('frontend/css/bootstrap5.css')}}" rel="stylesheet">
 <style>
-    .feat-img{
-        width: 200px;
-        height: 250px;
+    .feat-img, .cat-img{
+        width: 260px;
+        height: 270px;
     }
     .cat-img{
         margin: auto;
@@ -17,30 +16,26 @@
         position: relative;
         overflow: hidden;
     }
-    .card{
-        flex: 1;
-    }
 </style>
 @endpush
 @section('content')
     <!-- Featured Products Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
-            <div class="col">
-                <h2>Featured Products</h2>
+            <div class="text-center mb-3">
+                <h2 class="section-title px-5"><span class="px-2">Feactured Products</span></h2>
             </div>
         </div>
         <div class="row px-xl-5 pb-3">
-            <div class="owl-carousel featured-carousel owl-theme">
+            <div class="owl-carousel product-carousel card-deck">
                 @foreach ($featured_product as $prod)
-                    <div class="item flex">
-                        <div class="card">
-                            {{-- <a href="" class="cat-img"> --}}
-                                <img class="feat-img" src="{{ asset('assets/uploads/product/'.$prod->image)}}" alt="">
-                            {{-- </a> --}}
-                            <div class="card-body align-content-lg-end">
-                                <h5 class="font-weight-semi-bold m-0">{{ $prod->name }}</h5>
-                                <small>{{ $prod->selling_price}}</small>
+                    <div class="item">
+                        <div class="card flex">
+                            <img class="cat-img" src="{{ asset('assets/uploads/product/'.$prod->image)}}" alt="{{ $prod->slug}}">
+                            <div class="card-body align-content-end">
+                                <h5 class="font-weight-semi-bold">{{ $prod->name }}</h5>
+                                <span class="float-start">{{ $prod->selling_price}}</span>
+                                <span class="float-end"><s>{{ $prod->original_price}}</s></span>
                             </div>
                         </div>
                     </div>
@@ -48,14 +43,41 @@
             </div>
         </div>
     </div>
-    <!-- Categories End -->
+    <!-- Featured Products End -->
+
+    <!-- Trending Products Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="text-center mb-3">
+                <h2 class="section-title px-5"><span class="px-2">Trending Category</span></h2>
+            </div>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            <div class="owl-carousel featured-carousel owl-theme card-deck">
+                @foreach ($trending_category as $tcategory)
+                    <div class="item">
+                        <a href="{{ url('view-category/'.$tcategory->slug)}}">
+                            <div class="card flex">
+                                <img class="cat-img" src="{{ asset('assets/uploads/category/'.$tcategory->image)}}" alt="{{ $tcategory->slug}}">
+                                <div class="card-body align-content-end">
+                                    <h5 class="font-weight-semi-bold">{{ $tcategory->name }}</h5>
+                                    <p>{{ $tcategory->description}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Trending Products End -->
 @endsection
 
 @push('script')
     
     <script>
         $('.featured-carousel').owlCarousel({
-            loop:true,
+            loop:false,
             margin:10,
             nav:true,
             responsive:{
@@ -66,7 +88,7 @@
                     items:3
                 },
                 1000:{
-                    items:6
+                    items:5
                 }
             }
         })
